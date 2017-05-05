@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://catalis.github.io/"/>
-  <updated>2017-04-25T19:36:19.786Z</updated>
+  <updated>2017-05-05T18:34:02.947Z</updated>
   <id>https://catalis.github.io/</id>
   
   <author>
@@ -16,29 +16,52 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://catalis.github.io/2017/04/25/hello-world/"/>
-    <id>https://catalis.github.io/2017/04/25/hello-world/</id>
-    <published>2017-04-25T19:36:19.786Z</published>
-    <updated>2017-04-25T19:36:19.786Z</updated>
+    <title>Warsztat Developera - Skróty Klawiszowe Eclipse</title>
+    <link href="https://catalis.github.io/2017/05/05/Warsztat-developera-skroty-klawiszowe-Eclipse/"/>
+    <id>https://catalis.github.io/2017/05/05/Warsztat-developera-skroty-klawiszowe-Eclipse/</id>
+    <published>2017-05-05T18:34:02.000Z</published>
+    <updated>2017-05-05T18:34:02.947Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<p>Bez dwóch zdań każdy software developer używa do swojej codziennej pracy ulubione IDE. Jako że używanie myszy jest pass&eacute; (zwalnia proces przetwarzania naszych myśli na postać kodu źródłowego), warto nauczyć się kilku najbardziej przydatnych skrótów klawiszowych w swoim ulubinym IDE. Poniżej przedstawiam najbardziej podstawowe skróty w Eclipse.</p>
+<h2 id="Wyszukiwanie"><a href="#Wyszukiwanie" class="headerlink" title="Wyszukiwanie"></a>Wyszukiwanie</h2><ul>
+<li><strong>Ctrl + F</strong> - Find/Replace - wciśnięte w oknie edytora kodu źródłowego otwiera okno Find/Replace</li>
+<li><strong>Ctrl + H</strong> - Search - rozbudowane narzędzie do przeszukiwania zasobów projektów. Najbardziej przydatna w codziennej pracy zakładka File Search</li>
+<li><strong>Ctrl + Shift + R</strong> - Open Resource - wyszukuje zasoby projektu (najczęsciej w praktyce będą to klasy) na podstawie wprowadzonych częściowych nazw, np. szukamy klasy LightServiceBean, a wiemy tylko, że gdzieś w nazwie znajduje się słowo Light - w takim przypadku wprowadzamy *Light*.java i na liście jedną z pozycji z pewnością będzie nasza poszukiwana klasa</li>
+<li><strong>Ctrl + Shift + T</strong> - Open Type</li>
+</ul>
+<h2 id="Formatowanie"><a href="#Formatowanie" class="headerlink" title="Formatowanie"></a>Formatowanie</h2><ul>
+<li><strong>Ctrl + Shift + O</strong> - Organize Imports - porządkuje importy, m.in. usuwa nieużywane</li>
+<li><strong>Ctrl + Shift + F</strong> - Format - automatycznie formatuje kod źródłowy zgodnie z przyjętymi regułami</li>
+<li><strong>Ctrl + Shift + M</strong> - Add Import - pozwala na dodanie importu nieznanych w kodzie klas. Przydatny podczas statycznych importów, np. w przypadku statycznej metody Assert.assertThat(…), po naciśnięciu kombinacji, do importów statycznych zostanie dodana właśnie ta metoda, natomiast w kodzie możemy używać już tylko assertThat(…)</li>
+<li><strong>Alt + up/down</strong> - Przeniesienie bieżącego wiersza do góry/na dół</li>
+<li><strong>Ctrl + D</strong> - Usuwanie bieżącego wiersza</li>
+<li><strong>Ctrl + /</strong> - Zakomentowanie/odkomentowanie bieżącej linii (bądź wielu linii) komentarzem liniowym <em>//</em></li>
+<li><strong>Ctrl + Shift + /</strong> - Dodanie komentarza blokowego /* */</li>
+<li><strong>Ctrl + Shift + \</strong> - Usunięcie komentarza blokowego </li>
+<li><strong>Alt + Shift + R</strong> - Rename - zmiana nazwy klasy, pola, metody, itd. z aktualizacją referencji w miejscach użycia</li>
+</ul>
+<h2 id="Tworzenie"><a href="#Tworzenie" class="headerlink" title="Tworzenie"></a>Tworzenie</h2><ul>
+<li><strong>Ctrl + N</strong> - New - tworzenie nowego zasobu, np. klasy, interfejsu, projektu</li>
+</ul>
+<h2 id="Widoki"><a href="#Widoki" class="headerlink" title="Widoki"></a>Widoki</h2><ul>
+<li><strong>Alt + left/right</strong> - Przechodzenie pomiędzy ostatnio edytowanymi miejscami w kodzie</li>
+</ul>
+<h2 id="Inne"><a href="#Inne" class="headerlink" title="Inne"></a>Inne</h2><ul>
+<li><strong>Ctrl + Spacja</strong> - Podpowiedzi - często używany, jeśli nie najczęsciej, skrót, który podczas pisania kodu podpowiada nam dalszą część, np. nazwy pól/metod klasy, słowa kluczowe, dostępne szablony dla struktur (np. switch, for, metody main)</li>
+</ul>
+<p>Kombinacje klawiszy skrótów są widoczne przy wybranej pozycji w menu, także aby sobie przypomnieć skrót wystarczy zajrzeć do menu. Oczywiście nie wszystkie skróty są ustawione domyślnie. Istnieje szereg zadań, które nie mają przypisanego skrótu, a są bardzo czesto używane (np. generowanie getterów i setterów). Aby dodać własny lub zmienić istniejący skrót należy z menu wybrać:<br><strong>Windows -&gt; Preferences -&gt; General -&gt; Keys</strong></p>
+<p><img src="/img/add_custom_shortcut.png" alt="adding_shortcut_eclipse"></p>
+<p>Dla wybranego zadania (Command) przypisujemy lub zmieniamy kombinację klawiszy (Binding).</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;Bez dwóch zdań każdy software developer używa do swojej codziennej pracy ulubione IDE. Jako że używanie myszy jest pass&amp;eacute; (zwalnia 
     
     </summary>
     
+    
+      <category term="eclipse" scheme="https://catalis.github.io/tags/eclipse/"/>
     
   </entry>
   

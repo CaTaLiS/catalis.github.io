@@ -629,6 +629,8 @@ body {
 .post .post-content ol {
   margin: 0;
   padding: 0 0 0 2em;
+  margin-block-start: 15px;
+  margin-block-end: 15px;
 }
 .post .post-content ul code,
 .post .post-content ol code {
