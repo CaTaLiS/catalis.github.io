@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://catalis.github.io/"/>
-  <updated>2017-05-05T19:08:28.000Z</updated>
+  <updated>2017-05-07T14:13:41.418Z</updated>
   <id>https://catalis.github.io/</id>
   
   <author>
@@ -19,18 +19,31 @@
     <title>Harmonogram Zadań W Javie</title>
     <link href="https://catalis.github.io/2017/05/07/Harmonogram-zadan-w-Javie/"/>
     <id>https://catalis.github.io/2017/05/07/Harmonogram-zadan-w-Javie/</id>
-    <published>2017-05-07T08:18:33.802Z</published>
-    <updated>2017-05-05T19:08:28.000Z</updated>
+    <published>2017-05-07T14:13:41.426Z</published>
+    <updated>2017-05-07T14:13:41.418Z</updated>
     
-    <content type="html"><![CDATA[<p>W praktyce programistycznej często zdarza się, że potrzebujemy uruchomić jakieś zadanie w ściśle określonym czasie, bądź co pewien interwał czasu. W JEE z pomocą przychodziła usługa timera (najczęściej w postaci adnotacji @Schedule). Podobne mechanizmy spotkamy także w JSE. Java Concurrency API posiada prosty, wielowątkowy mechanizm, który pozwala nam na uruchamianie zadań co pewien określony przedział czasu. Poznajmy <strong>ScheduledExecutorService</strong>.</p>
-<p>ScheduledExecutorService jest interfejsem dziedziczącym po ExecutorService. Warto przyjrzeć się jego 4 podstawowym metodom:</p>
+    <content type="html"><![CDATA[<p>W praktyce programistycznej często zdarza się, że potrzebujemy uruchomić jakieś zadanie w ściśle określonym czasie, bądź co pewien interwał czasu. W JEE z pomocą przychodzi usługa timera (najczęściej w postaci adnotacji @Schedule). Podobne mechanizmy spotkamy także w JSE. Java Concurrency API posiada prosty, wielowątkowy mechanizm, który pozwala nam na uruchamianie zadań co pewien określony przedział czasu. Poznajmy <strong>ScheduledExecutorService</strong>.</p>
+<p>ScheduledExecutorService jest interfejsem dziedziczącym po ExecutorService. Warto przyjrzeć się jego 4 najważniejszym metodom:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">schedule(Callable&lt;V&gt; callable, <span class="keyword">long</span> delay, TimeUnit unit)</div></pre></td></tr></table></figure>
 <ul>
-<li>schedule(Callable<v> callable, long delay, TimeUnit unit)</v></li>
-<li>schedule(Runnable command, long delay, TimeUnit unit)</li>
-<li>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</li>
-<li>scheduleAtFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)</li>
+<li>tworzy  i wykonuje zadanie Callable po podanym opóźnieniu</li>
 </ul>
-<p>Poniżej zamieszczam prosty program, generujący co 5 sekund napis.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">schedule(Runnable command, <span class="keyword">long</span> delay, TimeUnit unit)</div></pre></td></tr></table></figure>
+<ul>
+<li>przeciążona wersja poprzedniej metody, przyjmująca zadanie Runnable</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scheduleAtFixedRate(Runnable command, <span class="keyword">long</span> initialDelay, <span class="keyword">long</span> period, TimeUnit unit)</div></pre></td></tr></table></figure>
+<ul>
+<li>tworzy i wykonuje zadanie Runnable po podanym wstępnym opóźnieniu (initialDelay), po czym przekazuje to zadanie do wykonania co zadany odcinek czasu (delay), niezależnie od tego, czy poprzednie zadanie zostało wykonane</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scheduleAtFixedDelay(Runnable command, <span class="keyword">long</span> initialDelay, <span class="keyword">long</span> delay, TimeUnit unit)</div></pre></td></tr></table></figure>
+<ul>
+<li>metoda analogiczna do poprzedniej, z tą różnicą, że czeka na wykonanie poprzedniego zadania, po jego wykonaniu czeka zadany odcinek czasu (delay), zanim przekaże to zadanie ponownie do wykonania</li>
+</ul>
+<p>Aby zakończyć pracę dyspozytora możemy użyć metody shutdown() na obiekcie klasy ScheduledExecutorService bądź anulować wykonywanie zadań za pomocą metody cancel(…) obiektu klasy Future (a ściślej ScheduledFuture), zwracanego przed powyższe metody. W drugim przypadku samo anulowanie nie jest wystarczające - jeżeli nie zamkniemy ostatecznie ExecutorService za pomocą metody shutdown(), wątek będzie nadal pracował w tle, co spowoduje, że JVM nie zakończy działania! </p>
+<p>Poniżej zamieszczam prosty przykładowy program, który generuje napis co 5 sekund, ze wstępnym 10-sekundowym opóźnieniem, który przerywa pracę po 60 sekundach. Dodatkowo, aby JVM zakończyła działanie, zostało dodane odpowiednie zadanie, wykonywane po 70 sekundach.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.ScheduledExecutorService;</div><div class="line"><span class="keyword">import</span> java.util.concurrent.ScheduledFuture;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlinkLightController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(<span class="number">1</span>);</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">blinkLightFor60Seconds</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">final</span> ScheduledFuture&lt;?&gt; lightHandle = scheduler.scheduleAtFixedRate(() -&gt; System.out.println(<span class="string">"blink!"</span>), <span class="number">10</span>, <span class="number">5</span>, SECONDS);</div><div class="line">		scheduler.schedule(() -&gt; lightHandle.cancel(<span class="keyword">true</span>), <span class="number">60</span>, SECONDS);</div><div class="line">		scheduler.schedule(() -&gt; scheduler.shutdown(), <span class="number">70</span>, SECONDS);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">new</span> BlinkLightController().blinkLightFor60Seconds();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Warto zwrócić uwagę, że zadania są wykonywane w jednym wątku (Executors.newScheduledThreadPool(1)). Oczywiście mając więcej, bardziej złożonych zadań, należy zastanowić się nad zwiększeniem liczby dostępnych wątków.</p>
 ]]></content>
     
     <summary type="html">
@@ -40,7 +53,7 @@
     </summary>
     
     
-      <category term="java, wielowątkowość" scheme="https://catalis.github.io/tags/java-wielowatkowosc/"/>
+      <category term="java" scheme="https://catalis.github.io/tags/java/"/>
     
   </entry>
   
