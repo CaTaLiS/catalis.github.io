@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>CaTaLiS Blog</title>
-  <subtitle>Development Version</subtitle>
+  <subtitle>Zapiski Programisty</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://catalis.github.io/"/>
-  <updated>2017-05-05T18:34:02.947Z</updated>
+  <updated>2017-05-05T19:08:28.000Z</updated>
   <id>https://catalis.github.io/</id>
   
   <author>
@@ -16,11 +16,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Harmonogram Zadań W Javie</title>
+    <link href="https://catalis.github.io/2017/05/07/Harmonogram-zadan-w-Javie/"/>
+    <id>https://catalis.github.io/2017/05/07/Harmonogram-zadan-w-Javie/</id>
+    <published>2017-05-07T08:18:33.802Z</published>
+    <updated>2017-05-05T19:08:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>W praktyce programistycznej często zdarza się, że potrzebujemy uruchomić jakieś zadanie w ściśle określonym czasie, bądź co pewien interwał czasu. W JEE z pomocą przychodziła usługa timera (najczęściej w postaci adnotacji @Schedule). Podobne mechanizmy spotkamy także w JSE. Java Concurrency API posiada prosty, wielowątkowy mechanizm, który pozwala nam na uruchamianie zadań co pewien określony przedział czasu. Poznajmy <strong>ScheduledExecutorService</strong>.</p>
+<p>ScheduledExecutorService jest interfejsem dziedziczącym po ExecutorService. Warto przyjrzeć się jego 4 podstawowym metodom:</p>
+<ul>
+<li>schedule(Callable<v> callable, long delay, TimeUnit unit)</v></li>
+<li>schedule(Runnable command, long delay, TimeUnit unit)</li>
+<li>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</li>
+<li>scheduleAtFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)</li>
+</ul>
+<p>Poniżej zamieszczam prosty program, generujący co 5 sekund napis.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;W praktyce programistycznej często zdarza się, że potrzebujemy uruchomić jakieś zadanie w ściśle określonym czasie, bądź co pewien interw
+    
+    </summary>
+    
+    
+      <category term="java, wielowątkowość" scheme="https://catalis.github.io/tags/java-wielowatkowosc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Warsztat Developera - Skróty Klawiszowe Eclipse</title>
     <link href="https://catalis.github.io/2017/05/05/Warsztat-developera-skroty-klawiszowe-Eclipse/"/>
     <id>https://catalis.github.io/2017/05/05/Warsztat-developera-skroty-klawiszowe-Eclipse/</id>
     <published>2017-05-05T18:34:02.000Z</published>
-    <updated>2017-05-05T18:34:02.947Z</updated>
+    <updated>2017-05-05T18:34:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>Bez dwóch zdań każdy software developer używa do swojej codziennej pracy ulubione IDE. Jako że używanie myszy jest pass&eacute; (zwalnia proces przetwarzania naszych myśli na postać kodu źródłowego), warto nauczyć się kilku najbardziej przydatnych skrótów klawiszowych w swoim ulubinym IDE. Poniżej przedstawiam najbardziej podstawowe skróty w Eclipse.</p>
 <h2 id="Wyszukiwanie"><a href="#Wyszukiwanie" class="headerlink" title="Wyszukiwanie"></a>Wyszukiwanie</h2><ul>
